@@ -769,7 +769,6 @@ public sealed class UiBuilder : IDisposable, IUiBuilder
             this.ShowUi?.InvokeSafely();
         }
 
-        ImGui.PushID(this.namespaceName);
         if (DoStats) this.PluginDrawStatistics.StartUpdate();
 
         if (this.hasErrorWindow)
@@ -804,8 +803,6 @@ public sealed class UiBuilder : IDisposable, IUiBuilder
         this.FrameCount++;
 
         if (DoStats) this.PluginDrawStatistics.EndUpdate();
-
-        ImGui.PopID();
 
         this.hitchDetector.Stop();
     }
