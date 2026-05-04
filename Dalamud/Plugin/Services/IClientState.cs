@@ -129,7 +129,7 @@ public interface IClientState : IDalamudService
 
     /// <summary>
     /// Check whether the client is currently "idle". This means a player is not logged in, is not actively in combat
-    /// or doing anything that we may not want to disrupt, and 30 seconds of the AfkTimer has passed.
+    /// or doing anything that we may not want to disrupt, and 30 seconds of the InputTimer has passed.
     /// </summary>
     /// <param name="blockingFlag">An outvar containing the first observed condition blocking the "idle" state. 0 if idle.</param>
     /// <returns>Returns true if the client is idle, false otherwise.</returns>
@@ -137,7 +137,7 @@ public interface IClientState : IDalamudService
 
     /// <summary>
     /// Check whether the client is currently "idle". This means a player is not logged in, is not actively in combat
-    /// or doing anything that we may not want to disrupt, and 30 seconds of the AfkTimer has passed.
+    /// or doing anything that we may not want to disrupt, and 30 seconds of the InputTimer has passed.
     /// </summary>
     /// <returns>Returns true if the client is idle, false otherwise.</returns>
     public bool IsClientIdle() => this.IsClientIdle(out _);
