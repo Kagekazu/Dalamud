@@ -751,8 +751,7 @@ internal class PluginManager : IInternalDisposableService
                 }
 
                 Log.Verbose("Finished async boot load");
-            },
-            tokenSource.Token);
+            });
     }
 
     /// <summary>
