@@ -769,7 +769,6 @@ public sealed class UiBuilder : IDisposable, IUiBuilder
             this.ShowUi?.InvokeSafely();
         }
 
-        ImGui.PushID(this.namespaceName);
         if (DoStats) this.PluginDrawStatistics.StartUpdate();
 
         if (this.hasErrorWindow)
@@ -787,25 +786,22 @@ public sealed class UiBuilder : IDisposable, IUiBuilder
 
             ImGui.End();
         }
-
-        try
+        else
         {
-            this.Draw?.InvokeSafely();
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex, "[{0}] UiBuilder OnBuildUi caught exception", this.namespaceName);
-            this.Draw = null;
-            this.OpenConfigUi = null;
-
-            this.hasErrorWindow = true;
+            try
+            {
+                this.Draw?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "[{0}] UiBuilder OnBuildUi caught exception", this.namespaceName);
+                this.hasErrorWindow = true;
+            }
         }
 
         this.FrameCount++;
 
         if (DoStats) this.PluginDrawStatistics.EndUpdate();
-
-        ImGui.PopID();
 
         this.hitchDetector.Stop();
     }
