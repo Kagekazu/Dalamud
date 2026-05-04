@@ -789,7 +789,7 @@ public sealed class UiBuilder : IDisposable, IUiBuilder
 
         try
         {
-            this.Draw?.InvokeSafely();
+            this.Draw?.Invoke();
         }
         catch (Exception ex)
         {
