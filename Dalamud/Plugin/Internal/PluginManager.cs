@@ -741,8 +741,18 @@ internal class PluginManager : IInternalDisposableService
                 if (t.IsFaulted)
                 {
                     Log.Error(t.Exception, "Failed to load FrameworkTickAsync/DrawAvailableAsync plugins");
+                    return;
                 }
-            }, TaskContinuationOptions.OnlyOnFaulted);
+
+                if (t.IsCanceled)
+                {
+                    Log.Error("Loading FrameworkTickAsync/DrawAvailableAsync plugins was canceled");
+                    return;
+                }
+
+                Log.Verbose("Finished async boot load");
+            },
+            tokenSource.Token);
     }
 
     /// <summary>
