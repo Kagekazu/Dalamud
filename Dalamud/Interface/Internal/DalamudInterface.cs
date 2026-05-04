@@ -1117,11 +1117,6 @@ internal class DalamudInterface : IInternalDisposableService
 
                     ImGui.Separator();
 
-                    if (ImGui.MenuItem("Load all API levels"u8, (byte*)null, pluginManager.LoadAllApiLevels))
-                    {
-                        pluginManager.LoadAllApiLevels ^= true;
-                    }
-
                     if (ImGui.MenuItem("Load blacklisted plugins"u8, (byte*)null, pluginManager.LoadBannedPlugins))
                     {
                         pluginManager.LoadBannedPlugins ^= true;
