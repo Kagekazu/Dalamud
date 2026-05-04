@@ -786,18 +786,17 @@ public sealed class UiBuilder : IDisposable, IUiBuilder
 
             ImGui.End();
         }
-
-        try
+        else
         {
-            this.Draw?.Invoke();
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex, "[{0}] UiBuilder OnBuildUi caught exception", this.namespaceName);
-            this.Draw = null;
-            this.OpenConfigUi = null;
-
-            this.hasErrorWindow = true;
+            try
+            {
+                this.Draw?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "[{0}] UiBuilder OnBuildUi caught exception", this.namespaceName);
+                this.hasErrorWindow = true;
+            }
         }
 
         this.FrameCount++;
