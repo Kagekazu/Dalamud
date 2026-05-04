@@ -228,7 +228,7 @@ internal sealed class ClientState : IInternalDisposableService, IClientState
         unsafe
         {
             var inputTimerModule = InputTimerModule.Instance();
-            if (inputTimerModule != null && inputTimerModule->InputTimer is not 0 and < 30)
+            if (inputTimerModule != null && inputTimerModule->Status == 1 && inputTimerModule->InputTimer < 30)
                 return false;
         }
 
